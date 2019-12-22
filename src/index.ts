@@ -18,13 +18,9 @@ export const renderHTML = async (page: puppeteer.Page) => {
 };
 
 export const setTitle = async (page: puppeteer.Page, title: string) => {
-  const elm = await page.$("title");
-  if (!elm) return;
-
   page.evaluate(
     /* istanbul ignore next */
-    (elm, title) => (elm.textContent = title),
-    elm,
+    title => (document.title = title),
     title
   );
 };
